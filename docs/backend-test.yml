@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+  title: backend-test
+  version: 1.0.0
+servers:
+  - url: localhost://
+paths:
+  /000:
+    get:
+      tags:
+        - default
+      summary: localhost:5000
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /000/users:
+    get:
+      tags:
+        - default
+      summary: localhost:5000/users
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - default
+      summary: localhost:5000/users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: funconario do adao
+                email: adaofunc@llc.com
+                jobId: 1
+                reports_to: 2
+                manager: 5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - default
+      summary: localhost:5000/users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 2
+                name: Fiofo
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /000/users/5:
+    get:
+      tags:
+        - default
+      summary: localhost:5000/users/5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - default
+      summary: localhost:5000/users/5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

@@ -1,16 +1,14 @@
 import { Request, Response, Router } from 'express';
-import * as bags from './controllers/bags';
-import * as cuboids from './controllers/cuboids';
+import * as users from './controllers/users';
 
 const router = Router();
 
 router
-  .get('/', (req: Request, res: Response) => res.send('Cuboids'))
-  .get('/bags', bags.list)
-  .get('/bags/:id', bags.get)
-  .post('/bags', bags.create)
-  .get('/cuboids', cuboids.list)
-  .get('/cuboids/:id', cuboids.get)
-  .post('/cuboids', cuboids.create);
+  .get('/', (req: Request, res: Response) => res.send('Jobs'))
+  .get('/users', users.list)
+  .get('/users/:id', users.get)
+  .post('/users', users.create)
+  .patch('/users', users.update)
+  .delete('/users/:id', users.remove);
 
 export default router;
