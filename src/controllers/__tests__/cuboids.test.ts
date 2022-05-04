@@ -223,14 +223,36 @@ describe('cuboid update', () => {
 });
 
 describe('cuboid delete', () => {
-  it('should delete the cuboid', () => {
-    const response = { status: HttpStatus.OK };
+  it('should delete the cuboid', async () => {
+    const bagId = (
+      await Bag.query().insert(
+        factories.bag.build({
+          volume: 10000,
+          title: 'A bag',
+        })
+      )
+    ).id;
+
+    const cuboidId = (
+      await Cuboid.query().insert(
+        factories.cuboid.build({
+          width: 4,
+          height: 4,
+          depth: 4,
+          bagId,
+        })
+      )
+    ).id;
+
+    const response = await request(server).delete(`/cuboids/${cuboidId}`);
 
     expect(response.status).toBe(HttpStatus.OK);
   });
 
-  it('should not delete and return 404 status code when cuboids doesnt exists', () => {
-    const response = { status: HttpStatus.NOT_FOUND };
+  it('should not delete and return 404 status code when cuboids doesnt exists', async () => {
+    const response = await request(server).delete(
+      `/cuboids/${Number.MAX_VALUE}`
+    );
 
     expect(response.status).toBe(HttpStatus.NOT_FOUND);
   });
